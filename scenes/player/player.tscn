@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvws12m6sc5r"]
+
+[ext_resource type="Script" uid="uid://8q523l8mxn4c" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dhmminqkrcfhu" path="res://sprites/playersprite.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://wawft1aa04oh" path="res://sprites/arrow.png" id="3_gmlin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("interactArrow") groups=["player"]]
+script = ExtResource("1_g2els")
+interactArrow = NodePath("InteractArrow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_qhqgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="InteractArrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -18)
+texture = ExtResource("3_gmlin")
