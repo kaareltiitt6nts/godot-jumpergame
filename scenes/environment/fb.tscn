@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cswlk0iesoieo"]
+
+[ext_resource type="Texture2D" uid="uid://6lgoir85sulx" path="res://sprites/facebook.png" id="1_7h81d"]
+[ext_resource type="Script" uid="uid://bke4qm6hgw38t" path="res://scripts/fb.gd" id="1_sxua6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxua6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7h81d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mif85"]
+size = Vector2(32, 32)
+
+[node name="FB" type="CharacterBody2D"]
+script = ExtResource("1_sxua6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.536743e-07, 5.9604645e-07)
+scale = Vector2(0.0625, 0.0625)
+sprite_frames = SubResource("SpriteFrames_sxua6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mif85")
