@@ -4,17 +4,14 @@ class_name Player
 var interactiblesInRange : Array = []
 var moveDir : Vector2 = Vector2.ZERO
 
-@export var gravity : float = 2000
-@export var playerSpeed : float = 30
-@export var friction : float = 25
-@export var jumpPower : float = 400
+@export var gravity : float = 700
+@export var acceleration : float = 1500
+@export var airAcceleration : float = 200
+@export var friction : float = 8
+@export var airFriction : float = 2
+@export var jumpPower : float = 200
 
 @export var interactArrow : Node
-
-func _ready() -> void:
-	for interactible in get_tree().get_nodes_in_group("interactible"):
-		interactible.connect("player_entered", _on_interactible_entered)
-		interactible.connect("player_exited", _on_interactible_exited)
 
 func isDown(inputId) -> bool:
 	return Input.is_action_pressed(inputId)
@@ -23,12 +20,8 @@ func isJustPressed(inputId) -> bool:
 	return Input.is_action_just_pressed(inputId)
 
 func jump() -> void:
-	if (is_on_wall_only()):
-		velocity += Vector2.UP * jumpPower + Vector2.LEFT * 1000
-		pass
-	
 	if (is_on_floor()):
-		velocity += Vector2.UP * jumpPower
+		addVelocity(Vector2.UP * jumpPower)
 
 func hasInteractibles() -> bool:
 	return interactiblesInRange.size() > 0
@@ -37,40 +30,38 @@ func interact():
 	if (hasInteractibles()):
 		interactiblesInRange[0].emit_signal("interact")
 
-func _process(delta: float) -> void:
+func addVelocity(dir : Vector2) -> void:
+	velocity += dir
+
+func setVelocity(dir : Vector2) -> void:
+	velocity = dir
+
+func _physics_process(delta: float) -> void:
 	if (isJustPressed("up")): ## ülesnool
 		jump()
 	if (isDown("right")): ## paremnool
-		moveDir += Vector2.RIGHT
+		moveDir.x += 1
 	if (isDown("left")): ## vasaknool
-		moveDir += Vector2.LEFT
+		moveDir.x -= 1
 	if (isJustPressed("interact")): ## enter
 		interact()
 	
-	var horizontalSpeed : Vector2 = moveDir * playerSpeed
-	var verticalSpeed : Vector2 = Vector2.DOWN * gravity * delta
+	velocity.y += gravity * delta
 	
-	velocity += horizontalSpeed + verticalSpeed
+	if (moveDir.x != 0):
+		var accel = acceleration if is_on_floor() else airAcceleration
+		addVelocity(Vector2(moveDir.x * accel * delta, 0))
 	
-	if (is_on_wall_only()):
-		var wallNormal = get_wall_normal()
-		var wallDot = wallNormal.dot(moveDir)
-		var movingToWall = wallDot == -1
-		
-		if (movingToWall):
-			velocity.y = minf(velocity.y, 10)
-	
-	interactArrow.visible = hasInteractibles()
+	var fric = friction if is_on_floor() else airFriction
+	velocity.x = lerpf(velocity.x, 0, fric * delta)
 	
 	move_and_slide()
 	
-	moveDir = Vector2.ZERO;
-	velocity.x = lerpf(velocity.x, 0, friction * delta)
+	interactArrow.visible = hasInteractibles()
+	moveDir = Vector2.ZERO
 
-func _on_interactible_entered(interactible: Interactible):
-	print(interactible)
+func addInteractibleInRange(interactible: Interactible):
 	interactiblesInRange.append(interactible)
 
-func _on_interactible_exited(interactible: Interactible):
-	print(interactible)
+func removeInteractibleInRange(interactible: Interactible):
 	interactiblesInRange.erase(interactible)

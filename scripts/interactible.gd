@@ -2,8 +2,6 @@ extends Area2D
 class_name Interactible
 
 signal interact
-signal player_entered(interactible: Interactible)
-signal player_exited(interactible: Interactible)
 
 func _ready() -> void:
 	monitoring = true
@@ -17,10 +15,10 @@ func _ready() -> void:
 func _on_interact() -> void:
 	pass
 
-func _on_body_entered(_body: CharacterBody2D) -> void:
-	if _body.is_in_group("player"):
-		emit_signal("player_entered", self)
+func _on_body_entered(body: CharacterBody2D) -> void:
+	if body is Player:
+		body.addInteractibleInRange(self)
 
-func _on_body_exited(_body: CharacterBody2D) -> void:
-	if _body.is_in_group("player"):
-		emit_signal("player_exited", self)
+func _on_body_exited(body: CharacterBody2D) -> void:
+	if body is Player:
+		body.removeInteractibleInRange(self)

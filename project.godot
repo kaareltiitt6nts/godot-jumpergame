@@ -15,10 +15,16 @@ run/main_scene="uid://cs1veoftm4m0g"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+
 [global_group]
 
 player=""
 interactible=""
+enemy=""
 
 [input]
 
