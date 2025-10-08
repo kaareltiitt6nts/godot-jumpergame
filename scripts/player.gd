@@ -150,7 +150,6 @@ func _process(delta: float) -> void:
 		var collisionCellPos : Vector2 = Levelmanager.currentTileMap.local_to_map(collisionPos)
 		collisionCellPos += Vector2.UP
 		safePosition = Levelmanager.currentTileMap.map_to_local(collisionCellPos)
-		print(safePosition)
 	
 	velocity.y += gravity * delta
 	
