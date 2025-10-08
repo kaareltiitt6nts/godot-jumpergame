@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4da6le5a2j4x" path="res://scripts/coin.gd" id="1_kpw5x"]
 [ext_resource type="AudioStream" uid="uid://dgckg1cbrhpfy" path="res://sounds/coin.wav" id="2_7n0m8"]
-[ext_resource type="Texture2D" uid="uid://dfmppp8cxd41i" path="res://icon.svg" id="2_jrjmv"]
+[ext_resource type="Texture2D" uid="uid://v8p60fqx23id" path="res://sprites/coin.png" id="2_svi1x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpw5x"]
 
@@ -13,8 +13,7 @@ script = ExtResource("1_kpw5x")
 shape = SubResource("CircleShape2D_kpw5x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_jrjmv")
+texture = ExtResource("2_svi1x")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_7n0m8")

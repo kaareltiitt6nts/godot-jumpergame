@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bajx78bctkxo2"]
+
+[ext_resource type="PackedScene" uid="uid://dvws12m6sc5r" path="res://scenes/player/player.tscn" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://d4gtam6cvv1is" path="res://scenes/environment/platform.tscn" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://dnq0ta885gwyw" path="res://scenes/environment/coin.tscn" id="3_epypp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wtcfe")]
+position = Vector2(157, 411)
+gravity = null
+playerSpeed = null
+friction = null
+jumpPower = null
+
+[node name="Platform" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(599, 539)
+scale = Vector2(91.799995, 1)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(-10, 343)
+scale = Vector2(1, 19)
+
+[node name="Coin" parent="." instance=ExtResource("3_epypp")]
+position = Vector2(207, 514)
+
+[node name="Coin2" parent="." instance=ExtResource("3_epypp")]
+position = Vector2(241, 514)
+
+[node name="Coin3" parent="." instance=ExtResource("3_epypp")]
+position = Vector2(275, 514)
