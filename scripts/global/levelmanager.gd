@@ -2,6 +2,9 @@ extends Node
 
 var currentPlayer : Player
 var currentLevel : Node
+var currentTileMap : TileMapLayer
+
+@onready var playerScene : PackedScene = load("res://scenes/player/player.tscn")
 
 func deleteLevel():
 	if (currentLevel != null):
@@ -18,12 +21,21 @@ func loadLevel(newScene : PackedScene, doDeletePlayer = false):
 	
 	deleteLevel()
 	
-	if (doDeletePlayer):
+	if doDeletePlayer:
 		deletePlayer()
+	
+	if currentPlayer == null:
+		var player = playerScene.instantiate()
+		add_child(player)
 	
 	var scene = newScene.instantiate()
 	add_child(scene)
 	currentLevel = scene
+	currentTileMap = scene.find_child("TileMapLayer")
+	
+	var spawnPos : Node2D = currentLevel.find_child("Playerspawn")
+	if spawnPos:
+		currentPlayer.position = spawnPos.position
 
 func loadPackedScene(newScene : PackedScene):
 	get_tree().change_scene_to_packed(newScene)

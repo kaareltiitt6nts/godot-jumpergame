@@ -4,13 +4,15 @@ class_name Player
 var interactiblesInRange : Array = []
 var moveDir : Vector2 = Vector2.ZERO
 var walkTimer = 0
+var safePosition : Vector2 = Vector2.ZERO
+var doUpdate : bool = true
 
 @export var gravity : float = 700
 @export var acceleration : float = 1500
 @export var airAcceleration : float = 200
-@export var friction : float = 8
-@export var airFriction : float = 2
-@export var jumpPower : float = 200
+@export var friction : float = 10
+@export var airFriction : float = 3
+@export var jumpPower : float = 230
 @export var walkSoundGap : float = 0.15
 
 @export var maxLives : int = 3
@@ -18,6 +20,7 @@ var currentLives = 3
 
 @onready var playerSprite : Sprite2D = $Sprite2D
 @onready var playerCollider : CollisionShape2D = $CollisionShape2D
+@onready var floorCheck : RayCast2D = $FloorCheck
 @onready var interactArrow : Node = $InteractArrow
 @onready var canvasLayer : CanvasLayer = $UI
 @onready var heartContainer : HBoxContainer = $UI/HeartContainer
@@ -61,7 +64,25 @@ func setVelocity(dir : Vector2) -> void:
 
 func die() -> void:
 	dieSoundPlayer.play()
+	queue_free()
 	get_tree().change_scene_to_file("res://scenes/levels/game_over.tscn")
+
+func setPlayerFrozen(state : bool):
+	if state:
+		playerSprite.modulate.a = 0.5
+		velocity = Vector2.ZERO
+		doUpdate = false
+	else:
+		playerSprite.modulate.a = 1
+		doUpdate = true
+
+func resetToSafePosition():
+	position = safePosition
+	setPlayerFrozen(true)
+	
+	await get_tree().create_timer(1).timeout
+	
+	setPlayerFrozen(false)
 
 func updateHearts() -> void:
 	var hearts : Array[Node] = heartContainer.get_children()
@@ -95,6 +116,8 @@ func _ready() -> void:
 	updateHearts()
 
 func _process(delta: float) -> void:
+	if (doUpdate == false):
+		return
 	if (currentLives <= 0):
 		return
 	
@@ -107,17 +130,27 @@ func _process(delta: float) -> void:
 	if (isJustPressed("interact")): ## enter
 		interact()
 	
-	if abs(moveDir.x) > 0 && is_on_floor():
+	if abs(moveDir.x) > 0 && is_on_floor() && velocity.length_squared() > 0:
 		if (isJustPressed("left") || isJustPressed("right")):
 			walkTimer += walkSoundGap / 2
 		
 		walkTimer += delta
+		playerSprite.position.y = (-walkSoundGap + walkTimer) * 8
+		
 		if walkTimer > walkSoundGap:
 			walkSoundPlayer.pitch_scale = randf_range(0.7, 1.3)
 			walkSoundPlayer.play()
 			walkTimer = 0
 	else:
+		playerSprite.position.y = 0
 		walkTimer = 0
+	
+	if floorCheck.is_colliding():
+		var collisionPos : Vector2 = floorCheck.get_collision_point()
+		var collisionCellPos : Vector2 = Levelmanager.currentTileMap.local_to_map(collisionPos)
+		collisionCellPos += Vector2.UP
+		safePosition = Levelmanager.currentTileMap.map_to_local(collisionCellPos)
+		print(safePosition)
 	
 	velocity.y += gravity * delta
 	
@@ -129,7 +162,6 @@ func _process(delta: float) -> void:
 	velocity.x = lerpf(velocity.x, 0, fric * delta)
 	
 	move_and_slide()
-	
 	interactArrow.visible = hasInteractibles()
 	moveDir = Vector2.ZERO
 

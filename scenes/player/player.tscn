@@ -25,10 +25,10 @@ uiHeart = ExtResource("2_lvxji")
 deathParticle = ExtResource("3_p47bc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.625, 0.625)
 texture = ExtResource("2_gmlin")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -85,3 +85,6 @@ stream = ExtResource("12_ugbui")
 
 [node name="Walk" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("13_fcs02")
+
+[node name="FloorCheck" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
