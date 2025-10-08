@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3krrwcgmnauv"]
+
+[ext_resource type="Script" uid="uid://d01kyfriflyn0" path="res://scripts/ui_notification.gd" id="1_ucm8y"]
+[ext_resource type="AudioStream" uid="uid://vlk41n0m7yd0" path="res://sounds/funfact.wav" id="2_pfcma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfcma"]
+bg_color = Color(0, 0, 0, 0.32941177)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bbwqt"]
+font_size = 14
+shadow_color = Color(0, 0, 0, 0.25490198)
+
+[node name="UiNotification" type="PanelContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 18.0
+offset_right = 150.0
+offset_bottom = 67.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pfcma")
+script = ExtResource("1_ucm8y")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "sadsadasdsadsaddsdadasdsdadasdadsadadsadasdsadasdadsdsadadsa"
+label_settings = SubResource("LabelSettings_bbwqt")
+autowrap_mode = 3
+
+[node name="NotificationSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_pfcma")

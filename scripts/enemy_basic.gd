@@ -11,6 +11,9 @@ extends CharacterBody2D
 
 @onready var topCollider : Area2D = $Colliders/TopCollider
 @onready var sideCollier : Area2D = $Colliders/SideCollider
+@onready var playerCollider : CollisionShape2D = $CollisionShape2D
+
+@onready var deathSoundPlayer : AudioStreamPlayer2D = $DeathSound
 
 var direction : int = 1
 var waitTimer : float = 0
@@ -43,11 +46,19 @@ func _physics_process(delta):
 	if (!edgeCheckToUse.is_colliding() && is_on_floor()):
 		canMove = false
 		velocity.x = 0
+	
+	if (is_on_wall()):
+		direction *= -1
 
 func _on_top_collider_body_entered(body: Node2D) -> void:
-	if body is Player:
-		body.jump()
-		queue_free()
+	if (body is Player):
+		body.jump(false)
+		deathSoundPlayer.play()
+		$AnimatedSprite2D.visible = false
+		topCollider.queue_free()
+		sideCollier.queue_free()
+		playerCollider.queue_free()
+		deathSoundPlayer.finished.connect(queue_free)
 
 func _on_side_collider_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -56,3 +67,4 @@ func _on_side_collider_body_entered(body: Node2D) -> void:
 		var force : Vector2 = dirToPlayer * 250 + Vector2.UP * 70
 		
 		body.setVelocity(force)
+		body.takeDamage(1)

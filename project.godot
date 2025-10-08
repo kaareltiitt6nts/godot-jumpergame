@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="jumpergame"
-run/main_scene="uid://cs1veoftm4m0g"
+run/main_scene="uid://bvi3ppla5tveq"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Levelmanager="*res://scripts/global/levelmanager.gd"
+Facts="*res://scripts/global/facts.gd"
 
 [display]
 
@@ -25,6 +34,7 @@ window/size/viewport_height=360
 player=""
 interactible=""
 enemy=""
+map=""
 
 [input]
 

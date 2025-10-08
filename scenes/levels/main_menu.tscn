@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvi3ppla5tveq"]
+
+[ext_resource type="Script" uid="uid://3rnd213y847e" path="res://scripts/main_menu.gd" id="1_fsby3"]
+[ext_resource type="PackedScene" uid="uid://cs1veoftm4m0g" path="res://scenes/levels/level1.tscn" id="2_leamy"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_fsby3")
+firstLevel = ExtResource("2_leamy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mängi"
+
+[node name="HomepageButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "VOCO"
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/HomepageButton" to="." method="_on_homepage_button_pressed"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://i4jyl6bhc8pa"]
+
+[ext_resource type="Texture2D" uid="uid://cv5f5lurmudan" path="res://sprites/heart_broken.png" id="1_eno7t"]
+[ext_resource type="Script" uid="uid://dkasu06pou1ap" path="res://scripts/deathparticle.gd" id="1_ffjkv"]
+
+[sub_resource type="Curve" id="Curve_xsid3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6293706, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Deathparticle" type="Node2D"]
+script = ExtResource("1_ffjkv")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("1_eno7t")
+lifetime = 1.1
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 47.37
+initial_velocity_min = 113.4
+initial_velocity_max = 432.99
+scale_amount_curve = SubResource("Curve_xsid3")
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

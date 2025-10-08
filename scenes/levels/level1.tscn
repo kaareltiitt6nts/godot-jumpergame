@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs1veoftm4m0g"]
+
+[ext_resource type="PackedScene" uid="uid://dbgq7ny0mnx4k" path="res://scenes/environment/platform.tscn" id="1_1seuy"]
+[ext_resource type="PackedScene" uid="uid://dnq0ta885gwyw" path="res://scenes/environment/coin.tscn" id="2_2r1tl"]
+[ext_resource type="PackedScene" uid="uid://cswlk0iesoieo" path="res://scenes/enemies/facebookenemy.tscn" id="3_8a7m2"]
+[ext_resource type="PackedScene" uid="uid://dvws12m6sc5r" path="res://scenes/player/player.tscn" id="4_plydf"]
+[ext_resource type="PackedScene" uid="uid://kouj0v66sdup" path="res://scenes/environment/leveltrigger.tscn" id="5_5ntmo"]
+[ext_resource type="PackedScene" uid="uid://bqhcq438vbgnc" path="res://scenes/levels/game_over.tscn" id="6_nkeig"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Platform" parent="." instance=ExtResource("1_1seuy")]
+position = Vector2(15.000107, 77.00003)
+scale = Vector2(10.799997, 1)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_1seuy")]
+position = Vector2(-90, -105)
+scale = Vector2(1, 19)
+
+[node name="Coin" parent="." instance=ExtResource("2_2r1tl")]
+position = Vector2(46, 48)
+
+[node name="Coin2" parent="." instance=ExtResource("2_2r1tl")]
+position = Vector2(80, 48)
+
+[node name="Coin3" parent="." instance=ExtResource("2_2r1tl")]
+position = Vector2(114, 48)
+
+[node name="Platform2" parent="." instance=ExtResource("1_1seuy")]
+position = Vector2(256.00003, 139)
+scale = Vector2(22.000004, 1)
+
+[node name="FacebookEnemy" parent="." instance=ExtResource("3_8a7m2")]
+position = Vector2(181, 120)
+
+[node name="Player" parent="." instance=ExtResource("4_plydf")]
+position = Vector2(-24, -29)
+
+[node name="Leveltrigger" parent="." instance=ExtResource("5_5ntmo")]
+position = Vector2(450, 118)
+nextLevel = ExtResource("6_nkeig")

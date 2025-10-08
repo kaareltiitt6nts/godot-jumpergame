@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cswlk0iesoieo"]
+[gd_scene load_steps=8 format=3 uid="uid://cswlk0iesoieo"]
 
-[ext_resource type="Script" path="res://scripts/enemy_basic.gd" id="1_w2xd5"]
+[ext_resource type="Script" uid="uid://dvq3o5mkxli30" path="res://scripts/enemy_basic.gd" id="1_w2xd5"]
 [ext_resource type="Texture2D" uid="uid://dy82p1coj4mre" path="res://sprites/enemies/facebook.png" id="2_5m6kc"]
+[ext_resource type="AudioStream" uid="uid://dlic0va3kdh85" path="res://sounds/enemy_death.wav" id="3_5m6kc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sxua6"]
 animations = [{
@@ -55,6 +56,9 @@ shape = SubResource("RectangleShape2D_w2xd5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/TopCollider"]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_5m6kc")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5m6kc")
 
 [connection signal="body_entered" from="Colliders/SideCollider" to="." method="_on_side_collider_body_entered"]
 [connection signal="body_entered" from="Colliders/TopCollider" to="." method="_on_top_collider_body_entered"]

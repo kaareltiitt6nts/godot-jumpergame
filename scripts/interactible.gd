@@ -12,8 +12,8 @@ func _ready() -> void:
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 
-func _on_interact() -> void:
-	pass
+func _on_interact(player : Player) -> void:
+	player.ui.createNotification("testing123")
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
