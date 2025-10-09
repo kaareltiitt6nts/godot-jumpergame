@@ -25,7 +25,7 @@ uiHeart = ExtResource("2_lvxji")
 deathParticle = ExtResource("3_p47bc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.6, 1.6)
+scale = Vector2(1.4, 1.6)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
