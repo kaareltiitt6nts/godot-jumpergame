@@ -1,11 +1,9 @@
 extends Interactible
 @onready var interactSound : AudioStreamPlayer2D = $AudioStreamPlayer2D
-#coin collection fixed yipeee
+
 func _on_body_entered(body: CharacterBody2D) -> void:
-	super._on_body_entered(body)
-	
 	if body is Player:
-		_collect_coin(body)
+		_collect_coin(body as Player)
 
 func _collect_coin(player: Player) -> void:
 	var fact = Facts.getRandomFact()
@@ -14,7 +12,7 @@ func _collect_coin(player: Player) -> void:
 		player.ui.createNotification(fact)
 	
 	$Sprite2D.visible = false
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disaled", true)
 	
 	interactSound.play()
 	interactSound.finished.connect(queue_free)
