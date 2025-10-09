@@ -33,6 +33,7 @@ var currentLives = 3
 @onready var walkSoundPlayer : AudioStreamPlayer2D = $Sounds/Walk
 
 @export var uiHeart : PackedScene
+@export var uiHeartGray : PackedScene
 @export var deathParticle : PackedScene
 
 func isDown(inputId) -> bool:
@@ -90,9 +91,15 @@ func updateHearts() -> void:
 	for child in hearts:
 		child.queue_free()
 	
-	for i in currentLives:
-		var heart : TextureRect = uiHeart.instantiate()
-		heartContainer.add_child(heart)
+	var lifeCount = 0
+	for i in maxLives:
+		lifeCount += 1
+		if (lifeCount > currentLives):
+			var heart : TextureRect = uiHeartGray.instantiate()
+			heartContainer.add_child(heart)
+		else:
+			var heart : TextureRect = uiHeart.instantiate()
+			heartContainer.add_child(heart)
 
 func takeDamage(amount: int) -> void:
 	currentLives -= amount

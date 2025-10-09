@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv3qd0v7hcggv"]
+
+[ext_resource type="Script" uid="uid://dvq3o5mkxli30" path="res://scripts/enemy_basic.gd" id="1_jjj0w"]
+[ext_resource type="Texture2D" uid="uid://desm8m2bfv0ll" path="res://sprites/enemies/instagram.png" id="2_jjj0w"]
+[ext_resource type="AudioStream" uid="uid://dlic0va3kdh85" path="res://sounds/enemy_death.wav" id="3_tv0a2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxua6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jjj0w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mif85"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2xd5"]
+size = Vector2(22, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5m6kc"]
+size = Vector2(16, 2)
+
+[node name="FacebookEnemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_jjj0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.536743e-07, 5.9604645e-07)
+sprite_frames = SubResource("SpriteFrames_sxua6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mif85")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RightEdge" type="RayCast2D" parent="Raycasts"]
+position = Vector2(9, 0)
+target_position = Vector2(0, 15)
+
+[node name="LeftEdge" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-9, 0)
+target_position = Vector2(0, 15)
+
+[node name="Colliders" type="Node2D" parent="."]
+
+[node name="SideCollider" type="Area2D" parent="Colliders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/SideCollider"]
+shape = SubResource("RectangleShape2D_w2xd5")
+
+[node name="TopCollider" type="Area2D" parent="Colliders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/TopCollider"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_5m6kc")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tv0a2")
+
+[connection signal="body_entered" from="Colliders/SideCollider" to="." method="_on_side_collider_body_entered"]
+[connection signal="body_entered" from="Colliders/TopCollider" to="." method="_on_top_collider_body_entered"]
