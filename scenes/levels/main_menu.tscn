@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvi3ppla5tveq"]
+[gd_scene load_steps=9 format=3 uid="uid://bvi3ppla5tveq"]
 
 [ext_resource type="Script" uid="uid://3rnd213y847e" path="res://scripts/main_menu.gd" id="1_fsby3"]
 [ext_resource type="PackedScene" uid="uid://cs1veoftm4m0g" path="res://scenes/levels/level1.tscn" id="2_leamy"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://cmktyaovs4wb2" path="res://sprites/super_voco_logo.png" id="4_keln3"]
 [ext_resource type="Texture2D" uid="uid://cyogpadpoiej2" path="res://sprites/btn_start.png" id="5_sn5u3"]
 [ext_resource type="Texture2D" uid="uid://dn2xd3jcbh3r3" path="res://sprites/btn_homepage.png" id="6_cn35j"]
+
+[sub_resource type="Gradient" id="Gradient_keln3"]
+colors = PackedColorArray(0.13333334, 0.13333334, 0.13333334, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_crctu"]
+gradient = SubResource("Gradient_keln3")
+width = 1
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_fsby3")
@@ -21,6 +28,12 @@ texture = ExtResource("3_keln3")
 position = Vector2(326, 111.85)
 scale = Vector2(0.38, 0.38)
 texture = ExtResource("4_keln3")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+z_index = -1
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("GradientTexture1D_crctu")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 offset_left = 3.0
