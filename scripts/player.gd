@@ -114,6 +114,7 @@ func takeDamage(amount: int) -> void:
 func _ready() -> void:
 	Levelmanager.currentPlayer = self
 	updateHearts()
+	ui.fadeIn(2)
 
 func _process(delta: float) -> void:
 	if (doUpdate == false):

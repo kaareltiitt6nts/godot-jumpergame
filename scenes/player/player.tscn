@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dvws12m6sc5r"]
+[gd_scene load_steps=17 format=3 uid="uid://dvws12m6sc5r"]
 
 [ext_resource type="Script" uid="uid://8q523l8mxn4c" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://lfbp7celw2to" path="res://sprites/characters/karakter_01.png" id="2_gmlin"]
@@ -17,7 +17,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(10, 10)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_0owmy"]
+[sub_resource type="Gradient" id="Gradient_gx1jg"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugbui"]
+gradient = SubResource("Gradient_gx1jg")
+width = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g2els")
@@ -53,10 +58,10 @@ offset_bottom = 36.0
 alignment = 2
 
 [node name="FadeBlack" type="TextureRect" parent="UI"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 offset_right = 640.0
 offset_bottom = 360.0
-texture = SubResource("CanvasTexture_0owmy")
+texture = SubResource("GradientTexture1D_ugbui")
 
 [node name="Notifications" type="Control" parent="UI"]
 layout_mode = 3
