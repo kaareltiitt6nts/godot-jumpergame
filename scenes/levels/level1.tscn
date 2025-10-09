@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cs1veoftm4m0g"]
+[gd_scene load_steps=12 format=4 uid="uid://cs1veoftm4m0g"]
 
 [ext_resource type="PackedScene" uid="uid://dnq0ta885gwyw" path="res://scenes/environment/coin.tscn" id="2_2r1tl"]
 [ext_resource type="TileSet" uid="uid://b7qermpiemnc4" path="res://tilesets/level1/level1.tres" id="2_4tcl0"]
@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cahc4vrpi7prm" path="res://scenes/environment/resetplayertrigger.tscn" id="6_1seuy"]
 [ext_resource type="PackedScene" uid="uid://dbgq7ny0mnx4k" path="res://scenes/environment/invisiblewall.tscn" id="7_2r1tl"]
 [ext_resource type="TileSet" uid="uid://hxr6vv1lbf2g" path="res://tilesets/stairs/stairs.tres" id="9_5ntmo"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level2.tscn" id="9_nkeig"]
 [ext_resource type="PackedScene" uid="uid://kouj0v66sdup" path="res://scenes/environment/leveltrigger.tscn" id="9_plydf"]
-[ext_resource type="PackedScene" uid="uid://bv3qd0v7hcggv" path="res://scenes/enemies/instagramenemy.tscn" id="10_5ntmo"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/instagramenemy.tscn" id="10_5ntmo"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1
@@ -49,6 +50,7 @@ scale = Vector2(1, 7.24)
 [node name="Leveltrigger" parent="." instance=ExtResource("9_plydf")]
 position = Vector2(823, -128)
 scale = Vector2(1, 4.6800003)
+nextLevel = ExtResource("9_nkeig")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 position = Vector2(0, 1)
