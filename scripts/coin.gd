@@ -12,7 +12,7 @@ func _collect_coin(player: Player) -> void:
 		player.ui.createNotification(fact)
 	
 	$Sprite2D.visible = false
-	$CollisionShape2D.set_deferred("disaled", true)
+	$CollisionShape2D.set_deferred("disabled", true)
 	
 	interactSound.play()
 	interactSound.finished.connect(queue_free)
