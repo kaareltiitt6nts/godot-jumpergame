@@ -126,8 +126,10 @@ func _process(delta: float) -> void:
 		jump()
 	if (isDown("right")): ## paremnool
 		moveDir.x += 1
+		playerSprite.scale.x = 1
 	if (isDown("left")): ## vasaknool
 		moveDir.x -= 1
+		playerSprite.scale.x = -1
 	if (isJustPressed("interact")): ## enter
 		interact()
 	
