@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cs1veoftm4m0g"]
+[gd_scene load_steps=11 format=4 uid="uid://cs1veoftm4m0g"]
 
 [ext_resource type="PackedScene" uid="uid://dnq0ta885gwyw" path="res://scenes/environment/coin.tscn" id="2_2r1tl"]
 [ext_resource type="TileSet" uid="uid://b7qermpiemnc4" path="res://tilesets/level1/level1.tres" id="2_4tcl0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dbgq7ny0mnx4k" path="res://scenes/environment/invisiblewall.tscn" id="7_2r1tl"]
 [ext_resource type="TileSet" uid="uid://hxr6vv1lbf2g" path="res://tilesets/stairs/stairs.tres" id="9_5ntmo"]
 [ext_resource type="PackedScene" uid="uid://kouj0v66sdup" path="res://scenes/environment/leveltrigger.tscn" id="9_plydf"]
+[ext_resource type="PackedScene" uid="uid://bv3qd0v7hcggv" path="res://scenes/enemies/instagramenemy.tscn" id="10_5ntmo"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,9 +25,6 @@ scale = Vector2(1, 19.52)
 
 [node name="Playerspawn" parent="." instance=ExtResource("4_bfxgj")]
 position = Vector2(-111, -22)
-
-[node name="FacebookEnemy" parent="." instance=ExtResource("3_8a7m2")]
-position = Vector2(164, -17)
 
 [node name="FacebookEnemy2" parent="." instance=ExtResource("3_8a7m2")]
 position = Vector2(521, -16)
@@ -55,3 +53,6 @@ scale = Vector2(1, 4.6800003)
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAA2APn/AAAAAAAAAAA3APj/AAAAAAAAAAA3APn/AAABAAAAAAA4APf/AAAAAAAAAAA5APf/AAABAAAAAAA4APj/AAABAAAAAAA5APb/AAAAAAAAAAA6APb/AAABAAAAAAA6APX/AAAAAAAAAAA7APX/AAABAAAAAAA=")
 tile_set = ExtResource("9_5ntmo")
+
+[node name="FacebookEnemy" parent="." instance=ExtResource("10_5ntmo")]
+position = Vector2(105, -15)
