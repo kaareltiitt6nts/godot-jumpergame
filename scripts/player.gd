@@ -155,11 +155,13 @@ func _process(delta: float) -> void:
 		playerSprite.position.y = 0
 		walkTimer = 0
 	
-	if floorCheck.is_colliding() && Levelmanager.currentTileMap:
-		var collisionPos : Vector2 = floorCheck.get_collision_point()
-		var collisionCellPos : Vector2 = Levelmanager.currentTileMap.local_to_map(collisionPos)
-		collisionCellPos += Vector2.UP
-		safePosition = Levelmanager.currentTileMap.map_to_local(collisionCellPos)
+	if floorCheck.is_colliding():
+		var collider = floorCheck.get_collider()
+		if collider is TileMapLayer:
+			var collisionPos : Vector2 = floorCheck.get_collision_point()
+			var collisionCellPos : Vector2 = collider.local_to_map(collisionPos)
+			collisionCellPos += Vector2.UP
+			safePosition = collider.map_to_local(collisionCellPos)
 	
 	velocity.y += gravity * delta
 	
