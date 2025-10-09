@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://kouj0v66sdup"]
+[gd_scene load_steps=4 format=3 uid="uid://kouj0v66sdup"]
 
 [ext_resource type="Script" uid="uid://bqxd4l2ra1xnf" path="res://scripts/leveltrigger.gd" id="1_h806x"]
+[ext_resource type="PackedScene" uid="uid://cywsnkyckm4or" path="res://scenes/levels/level2.tscn" id="2_w7my4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7my4"]
 
 [node name="Leveltrigger" type="Area2D"]
 script = ExtResource("1_h806x")
+nextLevel = ExtResource("2_w7my4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_w7my4")
