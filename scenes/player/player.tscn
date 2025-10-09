@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvws12m6sc5r"]
+[gd_scene load_steps=18 format=3 uid="uid://dvws12m6sc5r"]
 
 [ext_resource type="Script" uid="uid://8q523l8mxn4c" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://lfbp7celw2to" path="res://sprites/characters/karakter_01.png" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://bc7r3alnj27v2" path="res://scenes/ui/ui_heart.tscn" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://wawft1aa04oh" path="res://sprites/arrow.png" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://i4jyl6bhc8pa" path="res://scenes/particles/deathparticle.tscn" id="3_p47bc"]
+[ext_resource type="PackedScene" uid="uid://c6tgaupgkjswl" path="res://scenes/ui/ui_heart_gray.tscn" id="3_ugbui"]
 [ext_resource type="Script" uid="uid://bvi5wo4f3wq1v" path="res://scripts/ui.gd" id="6_75vfm"]
 [ext_resource type="PackedScene" uid="uid://b3krrwcgmnauv" path="res://scenes/ui/ui_notification.tscn" id="7_0owmy"]
 [ext_resource type="AudioStream" uid="uid://bw3us6xrpn6tr" path="res://sounds/jump.wav" id="8_h17s1"]
@@ -27,6 +28,7 @@ width = 1
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g2els")
 uiHeart = ExtResource("2_lvxji")
+uiHeartGray = ExtResource("3_ugbui")
 deathParticle = ExtResource("3_p47bc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -39,7 +39,7 @@ func _physics_process(delta):
 	else:
 		velocity.y = 0
 	
-	sprite.scale.x = direction
+	sprite.scale.x = -direction
 	
 	move_and_slide()
 	

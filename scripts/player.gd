@@ -33,6 +33,7 @@ var currentLives = 3
 @onready var walkSoundPlayer : AudioStreamPlayer2D = $Sounds/Walk
 
 @export var uiHeart : PackedScene
+@export var uiHeartGray : PackedScene
 @export var deathParticle : PackedScene
 
 func isDown(inputId) -> bool:
@@ -90,9 +91,15 @@ func updateHearts() -> void:
 	for child in hearts:
 		child.queue_free()
 	
-	for i in currentLives:
-		var heart : TextureRect = uiHeart.instantiate()
-		heartContainer.add_child(heart)
+	var lifeCount = 0
+	for i in maxLives:
+		lifeCount += 1
+		if (lifeCount > currentLives):
+			var heart : TextureRect = uiHeartGray.instantiate()
+			heartContainer.add_child(heart)
+		else:
+			var heart : TextureRect = uiHeart.instantiate()
+			heartContainer.add_child(heart)
 
 func takeDamage(amount: int) -> void:
 	currentLives -= amount
@@ -149,10 +156,12 @@ func _process(delta: float) -> void:
 		walkTimer = 0
 	
 	if floorCheck.is_colliding():
-		var collisionPos : Vector2 = floorCheck.get_collision_point()
-		var collisionCellPos : Vector2 = Levelmanager.currentTileMap.local_to_map(collisionPos)
-		collisionCellPos += Vector2.UP
-		safePosition = Levelmanager.currentTileMap.map_to_local(collisionCellPos)
+		var collider = floorCheck.get_collider()
+		if collider is TileMapLayer:
+			var collisionPos : Vector2 = floorCheck.get_collision_point()
+			var collisionCellPos : Vector2 = collider.local_to_map(collisionPos)
+			collisionCellPos += Vector2.UP
+			safePosition = collider.map_to_local(collisionCellPos)
 	
 	velocity.y += gravity * delta
 	

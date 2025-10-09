@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqewge63flaxk"
-path="res://.godot/imported/heart_broken.png-fc6a0675171d0ea6a0a1cc84cf0c7710.ctex"
+uid="uid://cmktyaovs4wb2"
+path="res://.godot/imported/super_voco_logo.png-35392a820da8b7f8235e37ae4b88bfcc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/heart_broken.png"
-dest_files=["res://.godot/imported/heart_broken.png-fc6a0675171d0ea6a0a1cc84cf0c7710.ctex"]
+source_file="res://sprites/super_voco_logo.png"
+dest_files=["res://.godot/imported/super_voco_logo.png-35392a820da8b7f8235e37ae4b88bfcc.ctex"]
 
 [params]
 
